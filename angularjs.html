@@ -5,46 +5,32 @@
 <meta charset="utf-8">
 <title>Héraut événement 2016</title>
 
+<link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
 
+<link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
+<link rel="stylesheet" href="./pinmap.css">
+<link rel="stylesheet" href="./material.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
-    <link  rel="stylesheet" href="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css">
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
-    <link rel="stylesheet" href="./pinmap.css">
-    <link rel="stylesheet" href="./material.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
 
-
-
- <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-
- <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css">
 
 <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 
 <!-- Date picker-->
-        <link rel="stylesheet" type="text/css" media="all" href="daterangepickerCompat.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">                    
-        <script type="text/javascript" src="moment.js"></script>      
-        <script type="text/javascript" src="daterangepickerCompat.js"></script>
-<!-- Date picker-->
-    
+<link rel="stylesheet" type="text/css" media="all" href="daterangepickerCompat.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+
 <!-- Loader-->
-        <link rel="stylesheet" type="text/css" media="all" href="demo/loaders.min.css" />
-        <script type="text/javascript" src="demo/loaders.css.js"></script>      
-<!-- Loader-->
+<link rel="stylesheet" type="text/css" media="all" href="demo/loaders.min.css" />
 
 <!-- Main style my page index.html-->
-        <link rel="stylesheet" type="text/css" href="StyleIndex.css" />
-<!-- Main style my page index.html-->
-
+<link rel="stylesheet" type="text/css" href="StyleIndex.css" />
 
 <body>
     <div class="mdl-layout mdl-js-layout">
@@ -161,12 +147,19 @@
         </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script> 
         <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
-        <script type="text/javascript" src="js/map.js"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="./js/testJS.js"></script>
         <script src="./material.min.js"></script>
-    
+        <script type="text/javascript" src="moment.js"></script>      
+        <!-- Date picker-->
+        <script type="text/javascript" src="daterangepickerCompat.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        <!-- Loader-->
+        <script type="text/javascript" src="demo/loaders.css.js"></script> 
+
+        <script type="text/javascript" src="js/map.js"> </script>
     
     </body>
 </html>
