@@ -144,7 +144,7 @@ var openSeaMapLayer = new ol.layer.Tile({
       ol.source.OSM.ATTRIBUTION
     ],
     crossOrigin: null,
-    url: ' http://tile.openstreetmap.org/{z}/{x}/{y}.png'
+    url: 'http://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' //http://tile.openstreetmap.org/{z}/{x}/{y}.png'
   })
 });
     

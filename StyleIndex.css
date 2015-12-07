@@ -1,6 +1,7 @@
 
-.glyphicon {
-    font-size: 10px;position:center;
+#span_info1,#span_info2,#span_info3,#span_info4,#span_info5,#span_info6 {
+    font-size: 10px;
+    position:center;
     color:rgb(0, 128, 255);
 }
 

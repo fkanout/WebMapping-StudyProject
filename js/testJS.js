@@ -211,7 +211,9 @@ webmapping.directive('jqueryDatePicker', ['$compile', '$timeout', '$parse', func
                       return true;
 
                   } else {
+                      getDate("");
                       return false;
+
                   }
                   
               }
