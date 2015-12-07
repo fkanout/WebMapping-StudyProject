@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html ng-app="webmapping">
+<head>
+    
+    <meta charset="utf-8">
+<title>Héraut événement 2016</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
+
+<script src="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css"></script>
+<link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    
+        <script src="./js/testJS.js"></script>
+    
+<link rel="stylesheet" href="./pinmap.css">
+    <link rel="stylesheet" href="./material.css">
+<script src="./material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script> 
+<script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
+
+
+    
+
+ <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
+    
+    
+    
+    
+    
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <!-- Date picker-->
+    
+    
+      <link rel="stylesheet" type="text/css" media="all" href="daterangepickerCompat.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+                    
+      <script type="text/javascript" src="moment.js"></script>      
+      <script type="text/javascript" src="daterangepickerCompat.js"></script>
+
+     
+    
+    
+    
+    
+    
+<!--    <script type='text/javascript' src='http://momentjs.com/downloads/moment-with-locales.js'></script>
+    <link rel="stylesheet" href="./bootstrap-material-datetimepicker.css" type="text/css">
+    <script src="./bootstrap-material-datetimepicker.js"></script>-->
+    
+    
+    
+    
+    <!-- Date picker-->
+    </head>
+<style>
+   /*checkbox Style*/
+    
+    .checkbox-custom, .radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.checkbox-custom, .checkbox-custom-label, .radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.checkbox-custom-label, .radio-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    background: rgb(0, 128, 255);
+
+}
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    background: #ccc;
+}
+
+
+.checkbox-custom:focus + .checkbox-custom-label, .radio-custom:focus + .radio-custom-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+    /*checkbox style*/
+      
+    .search-form {
+	position: absolute;
+	right: 20px;
+	top: 1px;
+}
+
+.search-field {
+	background-color: transparent;
+	background-image: url(http://api.ning.com:80/files/dr2jDpSXWFhyuoGJ4YR5Fu-PwuqLz70YxRaUcpdKNxf2HI5ECzddyx3NHuPz-MB4ujGS4rEtdtS-aQoFlQrtv*XwVOu*AvC8/searchicon.png);
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	border: none;
+	cursor: pointer;
+	height: 37px;
+	margin: 3px 0;
+	padding: 0 0 0 34px;
+	position: relative;
+	-webkit-transition: width 400ms ease, background 400ms ease;
+	transition:         width 400ms ease, background 400ms ease;
+	width: 0;
+}
+
+.search-field:focus {
+	background-color: #fff;
+	border: 1px solid #b9b9b9;
+	cursor: text;
+	outline: 0;
+	width: 200px;
+}
+
+.search-submit {
+  display: none;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+    
+    
+    
+    
+    
+    
+    
+html{ 
+    height:100%}
+body{
+    height:100%}
+#map{
+  height:100%;
+  width:100%;
+     
+}
+    .ol-zoom-in, .ol-zoom-out, .ol-zoom {
+     visibility: hidden;
+        
+    left: 50%;
+        top: 50%;
+        
+        
+    }
+    
+    
+    
+    
+    
+    .datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px; }
+
+</style>
+
+<body >
+<!-- Angular Material Dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<!-- Angular Material Javascript now available via Google CDN; version 0.11.2 used here -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+    
+    
+  <!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<div class="mdl-layout mdl-js-layout">
+<header class="mdl-layout__header mdl-layout__header--scroll">
+   
+       
+<div id="track" style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:25px;left:85%;cursor:pointer">
+    <div class='pin'></div>
+    <div class='pulse'></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Me localiser
+    
+</div>
+
+           
+    
+<div style="position:fixed;top:15px;left:30%" class="dropdown">
+<button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+Peysage<span class="caret"></span>
+</button>
+
+    
+<ul ng-controller="typePeysage" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    
+<li ng-repeat="peysage in peysags" style="margin: 0px 10px; width:200px;font-size:14px;color:rgb(0,0,0)">
+<input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="peysage.selected" id="{{peysage.name}}" class="checkbox-custom"  type="checkbox" checked>
+<label style="color:rgb(0,0,0)" for="{{peysage.name}}" class="checkbox-custom-label">{{peysage.name}}</label>
+</li>
+
+</ul>
+</div>            
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<div style="position:fixed;top:15px;left:38%" class="dropdown">
+<button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="type_even" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+Type d'événement<span class="caret"></span>
+</button>
+
+    
+<ul ng-controller="typeEvent" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    
+<li ng-repeat="event in typeEvent" style="margin: 0px 10px; width:200px;font-size:14px;color:rgb(0,0,0)">
+<input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="event.selected" id="{{event.name}}" class="checkbox-custom"  type="checkbox" checked>
+<label style="color:rgb(0,0,0)" for="{{event.name}}" class="checkbox-custom-label">{{event.name}}</label>
+</li>
+
+</ul>
+</div>            
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<div style="position:fixed;top:15px;left:50%" class="dropdown">
+<button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="DM_condition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+Condition d'entrée
+<span class="caret"></span>
+</button>
+
+    
+<ul ng-controller="conditionStatus"  class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    
+<li ng-repeat="val in condValue" style="margin: 0px 10px; width:auto;font-size:14px;color:rgb(0,0,0)">
+<input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="val.selected" id="{{val.name}}" class="checkbox-custom"  type="checkbox" checked>
+<label style="color:rgb(0,0,0)" for="{{val.name}}" class="checkbox-custom-label">{{val.name}}</label>
+</li>
+
+</ul>
+</div>
+
+        
+<div  style="position:fixed;top:15px;left:62%" class="dropdown">
+<button style="font-size:12px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+List de communes
+<span class="caret"></span>
+</button>
+<ul ng-controller="communesController" style="overflow-y: scroll;height:1000%" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    
+    
+    
+   
+    
+    <li style="margin: 0px 10px; width: auto;font-size:14px;color:rgb(0,0,0)" >
+        <input ng-init="inistialCommune()" id="selectAll" ng-click="checkAll()" ng-model="selectedAll" type="checkbox"    class="checkbox-custom">
+         <label for="selectAll" class="checkbox-custom-label" >Sélectionner tout</label> 
+        
+   
+        <div style="text-align: center;">
+        <span style="position:center;"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></div>
+    </li>
+    
+    <li style="margin: 0px 10px; text-align:center; width: 200px;font-size:12px;color:rgb(0,0,0)" >
+        
+        
+            <input ng-model="query" type="search" class="search-field" placeholder="Recherche" value="" name="s" title="Search efter:">
+       <br>
+        <span style="position:center;" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+
+       
+    </li>  
+    
+    <li ng-repeat="commune in communes | filter:query" style="margin: 0px 10px; width: 215px;font-size:14px;color:rgb(0,0,0)" >
+        <input  ng-click="submit()" id="{{commune.name}}" ng-model="commune.Selected" type="checkbox"  class="checkbox-custom">
+       <label  class="checkbox-custom-label" for="{{commune.name}}">{{commune.name}}</label> 
+    </li>
+
+</ul>
+</div>     
+
+
+            
+            <!--<input ng-controller="dateCtrl" style="margin: 15px 0px;text-align:center;position:fixed;font-size:12px;height:30px;width:125px;left:74%" type="text" id="date" class="form-control floating-label" placeholder="Date de debut">
+                    -->
+
+             
+    <input style="font-size:12px;margin:15px 0px;text-align:center;position:fixed;font-size:12px;height:25px;width:160px;left:74%" id="eventDate" jquery-date-picker ng-model="event.startDate" disable-dates="federalHolidayDates" />                
+             
+            </div>     
+           
+            
+   
+</header>
+<div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
+    
+
+        <img id="imginfo" style="width:349px;height:200px" src="115058444.jpg"> </img>
+
+          <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+ <h4 style="color:rgb(255,255,255);font-family:'Raleway';text-transform: uppercase;" id="nom"></h4>
+      
+        <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+
+
+        <h5 class="" style="background:rgba(239, 239, 239, 0);text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="Commune"></h5>
+    
+
+    
+      <h5 class="" style="background:rgba(0, 177, 255, 0);word-break: keep-all;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="type"></h5>
+    
+          <h5 class="" style="background:rgba(0, 177, 255, 0);word-break: keep-all;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="typePeysage"></h5>
+    
+      <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+    
+    
+     <h5 class="" style="background:rgba(0,235,255,0);word-break: break-word;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="date_d"></h5>
+     
+      <h5 class="" style="background:rgba(0,235,255,0);word-break: break-word;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="date_e"></h5>
+
+      <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+    
+       <h5 class="" style="background:rgba(95, 255, 89, 0);word-break: break-word;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="acces"></h5>
+    
+        <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+    
+      <h5 class="" style="background:rgba(0, 177, 255, 0);word-break: keep-all;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="adress"></h5>
+        <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+    
+       <h5 class="" style="background:rgba(199, 176, 0, 0);word-break: break-word;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="bref"></h5>
+
+  
+
+        
+        
+        
+    
+    
+</div>
+ 
+    <div class="map" id="map"><div id="popup"></div></div>
+<!-- <div  style="bottom:100%;"id="infoMove"class="alert alert-info" role="alert"></div> 
+-->         
+</div>
+    
+    
+
+<script>
+    var filterTotal=[];
+
+    var myCommunes,myConditions;
+    var myFilter="";
+    var geometry ;
+    var coordinate ;
+    var cqlFilter ;       
+    var geojsonFormat = new ol.format.GeoJSON();
+    
+    var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
+    'version=1.1.0&request=GetFeature&' +
+    'typename=montpellier:Data_Events&' +
+    'CQL_FILTER={{CQLFILTER}}&' +
+    'outputFormat=text/javascript&' +
+    'format_options=callback:loadFeatures';
+ 
+    
+    var vectorSource = new ol.source.Vector({
+    loader: function(extent, resolution, projection) {
+                                            var url = urlTemplate.replace('{{CQLFILTER}}', cqlFilter);
+                                            $.ajax({url: url, dataType: 'jsonp', jsonp: false});
+                                            }
+                                        });
+
+function changeFilter(addons) {
+       for (var i = 0; i < addons.length; i++) {
+           if( addons[i] !== ''){
+               if(myFilter==""){
+                  myFilter=addons[i];
+
+               }else{
+                   myFilter+=" AND " + addons[i];
+               }
+            }
+        
+    }
+    
+    
+    cqlFilter= myFilter;
+    console.log(myFilter);
+
+    vectorSource.clear(true);
+    myFilter="";
+}
+
+       
+    /*
+
+var vectorSource = new ol.source.Vector({
+  loader: function(extent, resolution, projection) {
+    var url ="http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&" +
+        "version=1.1.0&request=GetFeature&typename=montpellier:vignobles&" +
+        "CQL_FILTER='IMAGE>1'&" +
+        "outputFormat=text/javascript&format_options=callback:loadFeatures" +
+        "&srsname=EPSG:3857&bbox=" + extent.join(',') + ",EPSG:3857";
+    // use jsonp: false to prevent jQuery from adding the "callback"
+    // parameter to the URL
+    $.ajax({url: url, dataType: 'jsonp', jsonp: false});
+  },
+  strategy: ol.loadingstrategy.tile(new ol.tilegrid.createXYZ({
+    maxZoom: 13
+  }))
+
+}); */
+
+    // the global function whose name is specified in the URL of JSONP WFS
+// GetFeature requests
+var loadFeatures = function(response) {
+  vectorSource.addFeatures(geojsonFormat.readFeatures(response));
+};
+
+
+
+// Start Cluster
+    
+var clusterSource = new ol.source.Cluster({
+  distance: 20,
+  source: vectorSource
+});
+        
+var styleCache = {};
+var clusters = new ol.layer.Vector({
+  source: clusterSource,
+  style: function(feature, resolution) {
+    var size = feature.get('features').length;
+    var style = styleCache[size];
+    if (!style) {
+      style = [new ol.style.Style({
+            image: new ol.style.Icon({
+          anchor: [0.5, 0.5],
+          size: [125, 125],
+          offset: [0, 0],
+          
+          scale: 0.25,
+          src: './flags/facebook30.png'
+        }),
+         
+        
+        text: new ol.style.Text({
+          text: size.toString(),
+          font: '12px Calibri,sans-serif',
+           offsetX: 0,
+            offsetY: -5,
+            
+        
+          fill: new ol.style.Fill({
+            color: '#000000',
+              
+          })
+        })
+      })];
+      styleCache[size] = style;
+    }
+    return style;
+  }
+});
+//End Cluster
+
+var slidemenu = document.getElementById('slidemenu');
+var source = new ol.source.Vector({
+  features: loadFeatures
+    });
+var styleCache = {};
+
+  
+    
+    
+var openSeaMapLayer = new ol.layer.Tile({
+  source: new ol.source.OSM({
+    attributions: [
+      new ol.Attribution({
+        html: 'All maps &copy; ' +
+            '<a href="http://www.openseamap.org/">OpenSeaMap</a>'
+      }),
+      ol.source.OSM.ATTRIBUTION
+    ],
+    crossOrigin: null,
+    url: ' http://tile.openstreetmap.org/{z}/{x}/{y}.png'
+  })
+});
+    
+    
+var layers = [ 
+    openSeaMapLayer,
+clusters,
+];
+var view= new ol.View({
+    center:  [431735.4450117468, 5405225.345929167],
+    zoom: 9   
+    });
+var map = new ol.Map({
+    layers: layers,
+    
+    target:    document.getElementById('map'),
+    view: view,
+    loadTilesWhileAnimating:true,
+    loadTilesWhileInteracting:true,
+    
+    
+    });
+
+
+map.addControl(new ol.control.Zoom({
+    className: 'custom-zoom'
+}));
+   
+var nom = document.getElementById('nom');
+var place = document.getElementById('Commune');
+var imginfo = document.getElementById('imginfo');
+var adress = document.getElementById('adress');
+var bref = document.getElementById('bref');
+var type = document.getElementById('type');
+var acces = document.getElementById('acces');
+var date_d = document.getElementById('date_d');
+var date_e = document.getElementById('date_e');
+var typePeysage = document.getElementById('typePeysage');
+
+
+    
+    
+//Start GeoLocalisation
+ var geolocation = new ol.Geolocation({
+ projection: view.getProjection()
+});
+
+
+$( "#track" ).click(function() {
+  geolocation.setTracking(true);
+});
+
+var accuracyFeature = new ol.Feature();
+geolocation.on('change:accuracyGeometry', function() {
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+ 
+});
+
+var positionFeature = new ol.Feature();
+positionFeature.setStyle(new ol.style.Style({
+    image: new ol.style.Icon({
+          anchor: [0.5, 0.5],
+          offset: [0, 0],   
+          scale: 0.25,
+          src: './flags/location.png'
+    })
+  }));
+  
+geolocation.on('change:position', function() {
+  var coordinates = geolocation.getPosition();
+
+  positionFeature.setGeometry(coordinates ?
+      new ol.geom.Point(coordinates) : null);
+     
+    
+});
+
+var featuresOverlay = new ol.layer.Vector({
+  map: map,
+  source: new ol.source.Vector({
+    features: [accuracyFeature, positionFeature]
+  })
+});
+
+//End GeoLocalisation
+   
+    
+  /*  
+map.on('pointermove', function(e) {
+  if (e.dragging) {
+    $(element).popover('destroy');
+    return;
+  }
+  var pixel = map.getEventPixel(e.originalEvent);
+  var hit = map.hasFeatureAtPixel(pixel);
+  map.getTarget().style.cursor = hit ? 'pointer' : '';
+}); */
+
+map.on('click', function(evt) {
+ 
+  var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+       geometry = feature.getGeometry();
+    return feature;
+  });
+  if (feature) {
+    var features = feature.get('features');
+    var i;
+    for (i = 0; i < features.length; ++i) {
+        nom.innerText=(features[i].get('NOM'));
+        place.innerText="Commune: "+(features[i].get('COMMUNE'));
+        imginfo.src="./garig/"+(features[i].get('IMAGE'))+".jpg";
+        adress.innerHTML="Adress: <br>"+(features[i].get('ADRESS'));
+        bref.innerHTML="Enbref: <br>"+(features[i].get('DESCRIPTIO'));
+        type.innerHTML="Type d'evenement: "+(features[i].get('TYPE'));
+        acces.innerHTML="Condition d'entrée: "+(features[i].get('ACCES'));
+     
+        date_d.innerHTML="Date de debut . . . . . ."+(features[i].get('DATE_D'));
+        date_e.innerHTML="Date de fin . . . . . . . . . "+(features[i].get('DATE_F'));
+        typePeysage.innerHTML="Peysage: "+(features[i].get('PEYSAGE'));
+
+       
+}
+      slidemenu.className="mdl-layout__drawer is-visible";
+  }
+    else{
+        
+        
+        place.innerHTML="";
+        imginfo.src="";
+    }
+
+    coordinate = geometry.getCoordinates();
+
+    //Start Animation 
+    var pan = ol.animation.pan({
+    duration: 500,
+    source: /** @type {ol.Coordinate} */ (view.getCenter())
+    });
+    map.beforeRender(pan);
+    view.setCenter(coordinate);
+    //End Animation
+
+    
+});
+
+</script>
+
+        <script>
+        $('.dropdown-menu').on('click', function(event){
+            //The event won't be propagated to the document NODE and 
+            // therefore events delegated to document won't be fired
+            event.stopPropagation();
+        });
+        </script>
+   
+</body>
+</html>
