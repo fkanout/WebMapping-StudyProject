@@ -4,6 +4,7 @@
     
 <meta charset="utf-8">
 <title>Héraut événement 2016</title>
+
 <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
 <link  rel="stylesheet" href="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css">
 <link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
@@ -28,6 +29,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<!-- Style Index-->
+          <link rel="stylesheet" type="text/css" href="StyleIndex.css" />
+<!-- Style Index-->
 
 <!-- Date picker-->
       <link rel="stylesheet" type="text/css" media="all" href="daterangepickerCompat.css" />
@@ -39,157 +43,18 @@
 <!-- Loader-->
           <link rel="stylesheet" type="text/css" media="all" href="demo/loaders.min.css" />
           <script type="text/javascript" src="demo/loaders.css.js"></script>      
-
 <!-- Loader-->
 
 
 
-    
 
     
-</head>
 
-<style>
-
-.glyphicon glyphicon-option-horizontal{
-    font-size: 10px;position:center;
-    color:rgb(0, 128, 255);
-}
-
-.h4{
-    color:rgb(255,255,255);
-    font-family:'Raleway';
-    text-transform: uppercase;
-
-}
-.h5{
-    background:rgba(0, 177, 255, 0);
-    word-break: keep-all;
-    width:349px;
-    text-transform:capitalize;
-    color:rgb(255,255,255);font-family:'Raleway';
-    font-size:12px
-}
-
-   /*checkbox Style*/
-    
-    .checkbox-custom, .radio-custom {
-    opacity: 0;
-    position: absolute;   
-}
-
-.checkbox-custom, .checkbox-custom-label, .radio-custom, .radio-custom-label {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 5px;
-    cursor: pointer;
-}
-
-.checkbox-custom-label, .radio-custom-label {
-    position: relative;
-}
-
-.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
-    content: '';
-    background: #fff;
-    border: 2px solid #ddd;
-    display: inline-block;
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
-    padding: 2px;
-    margin-right: 10px;
-    text-align: center;
-}
-
-.checkbox-custom:checked + .checkbox-custom-label:before {
-    background: rgb(0, 128, 255);
-
-}
-
-.radio-custom + .radio-custom-label:before {
-    border-radius: 50%;
-}
-
-.radio-custom:checked + .radio-custom-label:before {
-    background: #ccc;
-}
-
-
-.checkbox-custom:focus + .checkbox-custom-label, .radio-custom:focus + .radio-custom-label {
-  outline: 1px solid #ddd; /* focus style */
-}
-    /*checkbox style*/
-      
-  .search-form {
-	position: absolute;
-	right: 20px;
-	top: 1px;
-}
-
-.search-field {
-	background-color: transparent;
-	background-image: url(http://api.ning.com:80/files/dr2jDpSXWFhyuoGJ4YR5Fu-PwuqLz70YxRaUcpdKNxf2HI5ECzddyx3NHuPz-MB4ujGS4rEtdtS-aQoFlQrtv*XwVOu*AvC8/searchicon.png);
-	background-position: 5px center;
-	background-repeat: no-repeat;
-	background-size: 24px 24px;
-	border: none;
-	cursor: pointer;
-	height: 37px;
-	margin: 3px 0;
-	padding: 0 0 0 34px;
-	position: relative;
-	-webkit-transition: width 400ms ease, background 400ms ease;
-	transition:         width 400ms ease, background 400ms ease;
-	width: 0;
-}
-
-.search-field:focus {
-	background-color: #fff;
-	border: 1px solid #b9b9b9;
-	cursor: text;
-	outline: 0;
-	width: 200px;
-}
-
-.search-submit {
-  display: none;
-}
-
-
-input[type="search"] {
-  -webkit-appearance: textfield;
-}
-    
-    
-    
-    .form-control {
-        font-size: 12px;
-        height: 30px;
-    }
-    
-    
-    
-html{ 
-    height:100%}
-body{font-family: 'Raleway', sans-serif;
-    height:100%}
-#map{
-  height:100%;
-  width:100%;
-     
-}
-    .ol-zoom-in, .ol-zoom-out, .ol-zoom {
-     visibility: hidden;
-        
-    left: 50%;
-        top: 50%;
-        
-        
-    }
     
 
-</style>
+
+
+
 <body>
     <div class="mdl-layout mdl-js-layout">
         <header class="mdl-layout__header mdl-layout__header--scroll">
@@ -272,25 +137,25 @@ body{font-family: 'Raleway', sans-serif;
         <div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
             <img id="imginfo" style="width:349px;height:200px" src="115058444.jpg"> </img>
             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h4  id="nom"></h4>
+            <h4  class="eventsTitel" id="nom"></h4>
 
             <span sclass="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5  id="Commune"></h5>
-            <h5  id="type"></h5>
-            <h5  id="typePeysage"></h5>
+            <h5 class="eventsInfo" id="Commune"></h5>
+            <h5 class="eventsInfo" id="type"></h5>
+            <h5 class="eventsInfo" id="typePeysage"></h5>
 
             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5  id="date_d"></h5>
-            <h5  id="date_e"></h5>
+            <h5  class="eventsInfo"id="date_d"></h5>
+            <h5  class="eventsInfo"id="date_e"></h5>
 
             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5  id="acces"></h5>
+            <h5  class="eventsInfo" id="acces"></h5>
 
             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5  id="adress"></h5>
+            <h5  class="eventsInfo"  id="adress"></h5>
 
             <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5  id="bref"></h5>
+            <h5  class="eventsInfo"  id="bref"></h5>
         </div>
 <!-- Openlayers Map  -->
     <div class="map" id="map"></div>     

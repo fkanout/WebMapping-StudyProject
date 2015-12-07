@@ -1,0 +1,138 @@
+
+.glyphicon glyphicon-option-horizontal{
+    font-size: 10px;position:center;
+    color:rgb(0, 128, 255);
+}
+
+.eventsTitel{
+    color:rgb(255,255,255);
+    font-family:'Raleway';
+    text-transform: uppercase;
+
+}
+.eventsInfo{
+    background:rgba(0, 177, 255, 0);
+    word-break: keep-all;
+    width:349px;
+    text-transform:capitalize;
+    color:rgb(255,255,255);font-family:'Raleway';
+    font-size:12px
+}
+
+   /*checkbox Style*/
+    
+    .checkbox-custom, .radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.checkbox-custom, .checkbox-custom-label, .radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.checkbox-custom-label, .radio-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    background: rgb(0, 128, 255);
+
+}
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    background: #ccc;
+}
+
+
+.checkbox-custom:focus + .checkbox-custom-label, .radio-custom:focus + .radio-custom-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+    /*checkbox style*/
+      
+  .search-form {
+	position: absolute;
+	right: 20px;
+	top: 1px;
+}
+
+.search-field {
+	background-color: transparent;
+	background-image: url(http://api.ning.com:80/files/dr2jDpSXWFhyuoGJ4YR5Fu-PwuqLz70YxRaUcpdKNxf2HI5ECzddyx3NHuPz-MB4ujGS4rEtdtS-aQoFlQrtv*XwVOu*AvC8/searchicon.png);
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	border: none;
+	cursor: pointer;
+	height: 37px;
+	margin: 3px 0;
+	padding: 0 0 0 34px;
+	position: relative;
+	-webkit-transition: width 400ms ease, background 400ms ease;
+	transition:         width 400ms ease, background 400ms ease;
+	width: 0;
+}
+
+.search-field:focus {
+	background-color: #fff;
+	border: 1px solid #b9b9b9;
+	cursor: text;
+	outline: 0;
+	width: 200px;
+}
+
+.search-submit {
+  display: none;
+}
+
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+    
+    
+    
+.form-control {
+        font-size: 12px;
+        height: 30px;
+}
+    
+    
+    
+html{ 
+    height:100%}
+body{font-family: 'Raleway', sans-serif;
+    height:100%}
+#map{
+  height:100%;
+  width:100%;
+     
+}
+    .ol-zoom-in, .ol-zoom-out, .ol-zoom {
+     visibility: hidden;
+        
+    left: 50%;
+        top: 50%;
+        
+        
+    }
+    
