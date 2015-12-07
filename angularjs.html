@@ -40,13 +40,9 @@
           <link rel="stylesheet" type="text/css" media="all" href="demo/loaders.min.css" />
           <script type="text/javascript" src="demo/loaders.css.js"></script>      
 
-    
-
 <!-- Loader-->
 
-<!--Map-->
 
-<!--Map-->
 
     
 
@@ -55,6 +51,17 @@
 
 <style>
 
+.glyphicon glyphicon-option-horizontal{
+    font-size: 10px;position:center;
+    color:rgb(0, 128, 255);
+}
+
+.h4{
+    color:rgb(255,255,255);
+    font-family:'Raleway';
+    text-transform: uppercase;
+
+}
 .h5{
     background:rgba(0, 177, 255, 0);
     word-break: keep-all;
@@ -239,7 +246,7 @@ body{font-family: 'Raleway', sans-serif;
                 </button>
                 <ul ng-controller="communesController" style="overflow-y: scroll;height:1000%" class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li style="margin: 0px 10px; width: auto;font-size:14px;color:rgb(0,0,0)" >
-                        <input ng-init="inistialCommune()" id="selectAll" ng-click="checkAll()" ng-model="selectedAll" type="checkbox"    class="checkbox-custom">
+                        <input ng-init="inistialCommune()" id="selectAll" ng-click="checkAll()" ng-model="selectedAll" type="checkbox" class="checkbox-custom">
                         <label for="selectAll" class="checkbox-custom-label" >Sélectionner tout</label> 
                         <div style="text-align: center;">
                             <span style="position:center;"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
@@ -264,25 +271,25 @@ body{font-family: 'Raleway', sans-serif;
 <!-- slide menu -->
         <div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
             <img id="imginfo" style="width:349px;height:200px" src="115058444.jpg"> </img>
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h4 style="color:rgb(255,255,255);font-family:'Raleway';text-transform: uppercase;" id="nom"></h4>
+            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h4  id="nom"></h4>
 
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5 class="" style="background:rgba(239, 239, 239, 0);text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="Commune"></h5>
-            <h5 class="" style="background:rgba(0, 177, 255, 0);word-break: keep-all;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="type"></h5>
-            <h5 class="" style="background:rgba(0, 177, 255, 0);word-break: keep-all;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="typePeysage"></h5>
+            <span sclass="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5  id="Commune"></h5>
+            <h5  id="type"></h5>
+            <h5  id="typePeysage"></h5>
 
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-            <h5 class="" style="background:rgba(0,235,255,0);word-break: break-word;width:349px;text-transform:capitalize;color:rgb(255,255,255);font-family:'Raleway';font-size:12px" id="date_d"></h5>
+            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5  id="date_d"></h5>
             <h5  id="date_e"></h5>
 
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
             <h5  id="acces"></h5>
 
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
             <h5  id="adress"></h5>
 
-            <span style="font-size: 10px;position:center;color:rgb(0, 128, 255)"class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
             <h5  id="bref"></h5>
         </div>
 <!-- Openlayers Map  -->
@@ -290,14 +297,14 @@ body{font-family: 'Raleway', sans-serif;
 </div>
 
     
-    <script>
-    $('.dropdown-menu').on('click', function(event){
-        //pour ne ferme pas le drop menu quand on clique de dans 
-    event.stopPropagation();
-    });
-    </script>
-    
-    <script type="text/javascript" src="js/map.js"> </script>
+        <script>
+            $('.dropdown-menu').on('click', function(event){
+                //pour ne ferme pas le drop menu quand on clique de dans 
+            event.stopPropagation();
+            });
+        </script>
+        
+        <script type="text/javascript" src="js/map.js"> </script>
     
     </body>
 </html>
