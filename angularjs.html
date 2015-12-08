@@ -26,11 +26,6 @@
     <body>
         <div class="mdl-layout mdl-js-layout">
             <header class="mdl-layout__header mdl-layout__header--scroll">
-                <div id="track" style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:25px;left:85%;cursor:pointer">
-                    <div class='pin'></div>
-                    <div class='pulse'></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Me localiser
- <!-- Style de la carte-->                
-                </div>
                  <div style="position:fixed;top:15px;left:1%" class="dropdown">
                     <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         <span class="caret"></span>
@@ -43,7 +38,7 @@
                     </ul>
                 </div>   
 <!-- search by peysage -->                
-                <div style="position:fixed;top:15px;left:30%" class="dropdown">
+                <div style="position:fixed;top:15px;left:20%" class="dropdown">
                     <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Peysage
                         <span class="caret"></span>
                     </button>
@@ -55,7 +50,7 @@
                     </ul>
                 </div>            
 <!-- search by evenement type -->
-                <div style="position:fixed;top:15px;left:38%" class="dropdown">
+                <div style="position:fixed;top:15px;left:28%" class="dropdown">
                     <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="type_even" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Type d'événement
                         <span class="caret"></span>
                     </button>
@@ -68,7 +63,7 @@
                     </ul>
                 </div>            
 <!-- search by condition d'entree -->
-                <div style="position:fixed;top:15px;left:50%" class="dropdown">
+                <div style="position:fixed;top:15px;left:40%" class="dropdown">
                     <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="DM_condition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Condition d'entrée
                         <span class="caret"></span>
                     </button>
@@ -81,7 +76,7 @@
                     </ul>
                 </div>
 <!-- drop menu List de communes -->
-                <div  style="position:fixed;top:15px;left:62%" class="dropdown"> 
+                <div  style="position:fixed;top:15px;left:52%" class="dropdown"> 
                     <button style="font-size:12px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">List de communes
                         <span class="caret"></span>
                     </button>
@@ -101,11 +96,30 @@
                     </ul>
                 </div>     
 <!-- search by date -->
-                <div ng-controller="mainController" style="margin: 15px 0px;text-align:center;position:fixed;font-size:12px;height:30px;width:145px;left:74%">
+                <!--<div ng-controller="mainController" style="margin: 15px 0px;text-align:center;position:fixed;font-size:12px;height:30px;width:145px;left:74%">
                     <input ng-change="submitDates()" id="eventDate" jquery-date-picker ng-model="event.startDate" /> 
+                </div>-->
+<!-- slide menu --> 
+                <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:170px;left:85%" class="input-group">
+   <span class="input-group-btn">
+            <input style="width:90px;height:34px;" type="text" class="form-control" placeholder="La distance">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Calculer</button>
+      </span>
+</div>
+                <div id="track" style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:20px;left:81%;cursor:pointer">
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                      <input type="checkbox" id="switch-2" class="mdl-switch__input">
+                      <span class="mdl-switch__label"></span>
+                    </label>
+                    
+                    
+                    
+                    <!--<div class='pin'></div>
+                    <div class='pulse'></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Me localiser
+                     <!-- Style de la carte-->              
                 </div>
-            </header>
-<!-- slide menu -->
+                </header>
             <div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
                 <img id="imginfo" style="width:349px;height:200px" src="115058444.jpg"> </img>
                 <span id="span_info1" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>

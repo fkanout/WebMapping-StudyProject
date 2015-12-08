@@ -10,13 +10,12 @@ var geojsonFormat = new ol.format.GeoJSON();
 var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
 'version=1.1.0&request=GetFeature&' +
 'typename=montpellier:Data_Events&' +
-'CQL_FILTER={{CQLFILTER}}&' +
+'CQL_FILTER={{CQLFILTER}}&'+
 'outputFormat=text/javascript&' +
 'format_options=callback:loadFeatures';
  
 
-
-
+//  DWithin(GEOMETRY,POINT(5895346 1792630),10000,meters)
 
 
 function getDate(chosenDate){
@@ -200,6 +199,7 @@ geolocation.on('change:position', function() {
 
   positionFeature.setGeometry(coordinates ?
       new ol.geom.Point(coordinates) : null);
+    console.log(coordinates);
      
     
 });
