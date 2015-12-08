@@ -32,15 +32,13 @@
  <!-- Style de la carte-->                
                 </div>
                  <div style="position:fixed;top:15px;left:1%" class="dropdown">
-                    <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+                    <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         <span class="caret"></span>
                     </button>
-                    <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li  style="margin: 0px 10px; width:150px;font-size:14px;color:rgb(0,0,0)">
-                            <div>
-                                <input id="radio-2" class="radio-custom" name="radio-group" type="radio">
-                                <label for="radio-2" class="radio-custom-label">STAMEN:Toner</label>
-                            </div>
+                    <ul ng-controller="styleCtrl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="mystyle in styleList"  style="margin: 0px 10px; width:180px;font-size:14px;color:rgb(0,0,0)">
+                            <input ng-click="styleChecked(mystyle.val)" ng-model="chosen" id="radioStyle{{$index}}" class="radio-custom" name="radio-group" type="radio">
+                            <label for="radioStyle{{$index}}" class="radio-custom-label">{{mystyle.name}}</label>
                         </li>
                     </ul>
                 </div>   

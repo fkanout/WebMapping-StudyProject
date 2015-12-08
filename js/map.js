@@ -1,28 +1,33 @@
-    function getDate(chosenDate){
+var filterTotal=[];
+var carte_style_url='http://b.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg';
+var myCommunes,myConditions;
+var myFilter="";
+var geometry ;
+var coordinate ;
+var cqlFilter ;       
+var geojsonFormat = new ol.format.GeoJSON();
+
+var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
+'version=1.1.0&request=GetFeature&' +
+'typename=montpellier:Data_Events&' +
+'CQL_FILTER={{CQLFILTER}}&' +
+'outputFormat=text/javascript&' +
+'format_options=callback:loadFeatures';
+ 
+
+
+
+
+
+function getDate(chosenDate){
         filterTotal.splice(4,1,"");
         myDate= "DATE_D = '"+chosenDate+"'";///BEFORE OR DURING 
         ///        lastEarthQuake DURING 1700-01-01T00:00:00/2011-01-01T00:00:00"
-        filterTotal.splice(4,1,myDate);
+        filterTotal.splice(4, 1 ,myDate);
         changeFilter(filterTotal);
-
     };
     
-    var filterTotal=[];
-
-    var myCommunes,myConditions;
-    var myFilter="";
-    var geometry ;
-    var coordinate ;
-    var cqlFilter ;       
-    var geojsonFormat = new ol.format.GeoJSON();
     
-    var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
-    'version=1.1.0&request=GetFeature&' +
-    'typename=montpellier:Data_Events&' +
-    'CQL_FILTER={{CQLFILTER}}&' +
-    'outputFormat=text/javascript&' +
-    'format_options=callback:loadFeatures';
- 
     
     var vectorSource = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
@@ -51,26 +56,6 @@ function changeFilter(addons) {
     vectorSource.clear(true);
     myFilter="";
 }
-
-       
-    /*
-
-var vectorSource = new ol.source.Vector({
-  loader: function(extent, resolution, projection) {
-    var url ="http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&" +
-        "version=1.1.0&request=GetFeature&typename=montpellier:vignobles&" +
-        "CQL_FILTER='IMAGE>1'&" +
-        "outputFormat=text/javascript&format_options=callback:loadFeatures" +
-        "&srsname=EPSG:3857&bbox=" + extent.join(',') + ",EPSG:3857";
-    // use jsonp: false to prevent jQuery from adding the "callback"
-    // parameter to the URL
-    $.ajax({url: url, dataType: 'jsonp', jsonp: false});
-  },
-  strategy: ol.loadingstrategy.tile(new ol.tilegrid.createXYZ({
-    maxZoom: 13
-  }))
-
-}); */
 
     // the global function whose name is specified in the URL of JSONP WFS
 // GetFeature requests
@@ -132,26 +117,13 @@ var source = new ol.source.Vector({
 var styleCache = {};
 
   
-    
-    
-var openSeaMapLayer = new ol.layer.Tile({
-  source: new ol.source.OSM({
-    attributions: [
-      new ol.Attribution({
-        html: 'All maps &copy; ' +
-            '<a href="http://www.openseamap.org/">OpenSeaMap</a>'
-      }),
-      ol.source.OSM.ATTRIBUTION
-    ],
-    crossOrigin: null,
-    url: 'http://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' //http://tile.openstreetmap.org/{z}/{x}/{y}.png'
-  })
-});
+var sourceTile= new ol.source.XYZ({url:carte_style_url});  
+var tileLayer = new ol.layer.Tile({source:sourceTile});
     
     
 var layers = [ 
-    openSeaMapLayer,
-clusters,
+    tileLayer,
+    clusters,
 ];
 var view= new ol.View({
     center:  [431735.4450117468, 5405225.345929167],
@@ -167,6 +139,16 @@ var map = new ol.Map({
     
     
     });
+
+
+function changeStyle(val){
+    
+    carte_style_url=val;
+sourceTile.setUrl(carte_style_url)    ;
+    
+    
+    
+};
 
 
 map.addControl(new ol.control.Zoom({
