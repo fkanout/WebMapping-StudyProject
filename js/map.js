@@ -170,13 +170,21 @@ var typePeysage = document.getElementById('typePeysage');
     
 //Start GeoLocalisation
  var geolocation = new ol.Geolocation({
- projection: view.getProjection()
+ projection: view.getProjection(),
+    
 });
 
 
-$( "#track" ).click(function() {
-  geolocation.setTracking(true);
-});
+      
+   
+ 
+
+
+ 
+ 
+
+
+
 
 var accuracyFeature = new ol.Feature();
 geolocation.on('change:accuracyGeometry', function() {
@@ -203,6 +211,9 @@ geolocation.on('change:position', function() {
      
     
 });
+var sourcefeaturesOverlay = new ol.source.Vector({
+    features: [accuracyFeature, positionFeature]
+  });
 
 var featuresOverlay = new ol.layer.Vector({
   map: map,
@@ -210,6 +221,25 @@ var featuresOverlay = new ol.layer.Vector({
     features: [accuracyFeature, positionFeature]
   })
 });
+
+
+function validateGPS(){
+    var checkBoxGPS=document.getElementById('track');
+
+    if(checkBoxGPS.checked){
+       console.log('checked');
+      geolocation.setTracking(true);
+        featuresOverlay.setSource(sourcefeaturesOverlay);
+   }else{
+       geolocation.setTracking(false);
+       featuresOverlay.setSource(null);
+       console.log('nonchecked');
+   }
+    
+    
+};
+
+
 
 //End GeoLocalisation
    
