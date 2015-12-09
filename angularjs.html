@@ -100,11 +100,11 @@
                     <input ng-change="submitDates()" id="eventDate" jquery-date-picker ng-model="event.startDate" /> 
                 </div>-->
 <!-- slide menu --> 
-                <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:170px;left:85%" class="input-group">
+                <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:162px;left:85%" class="input-group">
    <span class="input-group-btn">
-            <input style="width:90px;height:34px;" type="text" class="form-control" placeholder="La distance">
+            <input id="gpsText" style="width:90px;height:30px;" type="text" class="form-control" placeholder="La distance"  disabled>
             <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Calculer</button>
+        <button style="font-size:12px;height:30px;" id="gpsButton" class="btn btn-default" type="button" disabled>Calculer</button>
       </span>
 </div>
                 <div  style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:20px;left:75%;cursor:pointer">

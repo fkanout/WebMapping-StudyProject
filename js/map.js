@@ -6,6 +6,7 @@ var geometry ;
 var coordinate ;
 var cqlFilter ;       
 var geojsonFormat = new ol.format.GeoJSON();
+ var coordinates;
 
 var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
 'version=1.1.0&request=GetFeature&' +
@@ -125,8 +126,8 @@ var layers = [
     clusters,
 ];
 var view= new ol.View({
-    center:  [431735.4450117468, 5405225.345929167],
-    zoom: 9   
+    center:  [385242.6225572883, 5406391.010610516],
+    zoom: 10   
     });
 var map = new ol.Map({
     layers: layers,
@@ -203,7 +204,7 @@ positionFeature.setStyle(new ol.style.Style({
   }));
   
 geolocation.on('change:position', function() {
-  var coordinates = geolocation.getPosition();
+   coordinates = geolocation.getPosition();
 
   positionFeature.setGeometry(coordinates ?
       new ol.geom.Point(coordinates) : null);
@@ -225,18 +226,21 @@ var featuresOverlay = new ol.layer.Vector({
 
 function validateGPS(){
     var checkBoxGPS=document.getElementById('track');
-
     if(checkBoxGPS.checked){
-       console.log('checked');
-      geolocation.setTracking(true);
+        console.log('checked');
+        geolocation.setTracking(true);
         featuresOverlay.setSource(sourcefeaturesOverlay);
-   }else{
-       geolocation.setTracking(false);
-       featuresOverlay.setSource(null);
-       console.log('nonchecked');
-   }
-    
-    
+        document.getElementById("gpsButton").disabled = false;
+        document.getElementById("gpsText").disabled = false;
+        document.getElementById("gpsText").value="";
+    }else{
+    geolocation.setTracking(false);
+        featuresOverlay.setSource(null);
+        console.log('nonchecked');
+        document.getElementById("gpsButton").disabled = true;
+        document.getElementById("gpsText").disabled = true;
+        document.getElementById("gpsText").value="";
+    }
 };
 
 
