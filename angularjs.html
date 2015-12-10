@@ -32,7 +32,7 @@
                     </button>
                     <ul ng-controller="styleCtrl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li ng-repeat="mystyle in styleList"  style="margin: 0px 10px; width:180px;font-size:14px;color:rgb(0,0,0)">
-                            <input ng-click="styleChecked(mystyle.val)" ng-model="chosen" id="radioStyle{{$index}}" class="radio-custom" name="radio-group" type="radio">
+                            <input ng-click="styleChecked(mystyle.val)" ng-model="$parent.selected" ng-value="mystyle.name" id="radioStyle{{$index}}" class="radio-custom" name="radio-group" type="radio">
                             <label for="radioStyle{{$index}}" class="radio-custom-label">{{mystyle.name}}</label>
                         </li>
                     </ul>

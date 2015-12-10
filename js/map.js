@@ -1,5 +1,5 @@
 var filterTotal=[];
-var carte_style_url='http://b.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg';
+var carte_style_url='http://tile.openstreetmap.org/{z}/{x}/{y}.png';
 var myCommunes,myConditions;
 var myFilter="";
 var geometry ;

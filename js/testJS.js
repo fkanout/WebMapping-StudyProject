@@ -171,6 +171,8 @@ webmapping.controller("typePeysage",function($scope){
 
 webmapping.controller('styleCtrl',function($scope){ 
     $scope.styleList=carteStyle;
+    $scope.selected='OSM-MapInk';
+    
     $scope.styleChecked=function(val){
        changeStyle(val);
     };
@@ -269,18 +271,18 @@ webmapping.directive('jqueryDatePicker', ['$compile', '$timeout', '$parse', func
 
 var carteStyle=[
 {name:"OSM-MapInk",val:"http://tile.openstreetmap.org/{z}/{x}/{y}.png",chosen:true},
-{name:"OSM-France",val:"http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",chosen:true},
+{name:"OSM-France",val:"http://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",chosen:true},
 {name:"OSM-Monochrome",val:"http://a.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",chosen:false},
-{name:"OSM-Hot",val:"http://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",chosen:false},
-{name:"OSM-RiverBoatMap",val:"http://b.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png",chosen:false},{name:"OSM-thunderfores",val:"https://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png",chosen:false},
-{name:"OSM-RiverBoatMap",val:"http://a.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png",chosen:false},{name:"OSM-GPS",val:"http://a.gps-tile.openstreetmap.org/lines/{z}/{x}/{y}.png",chosen:false},
+{name:"OSM-Hot",val:"http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",chosen:false},
+{name:"OSM-RiverBoatMap",val:"http://b.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png",chosen:false},
+{name:"OSM-thunderfores",val:"https://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png",chosen:false},
+{name:"OSM-GPS",val:"http://a.gps-tile.openstreetmap.org/lines/{z}/{x}/{y}.png",chosen:false},
 {name:"OSM-Admin",val:"http://korona.geog.uni-heidelberg.de/tiles/adminb/x={x}&y={y}&z={z}",chosen:false},
     
 {name:"OCM-Transport",val:"http://b.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png",chosen:false},
 {name:"HikeBikeMap",val:"http://a.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",chosen:false},
 {name:"Stamen-Toner",val:"http://tile.stamen.com/toner/{z}/{x}/{y}.png",chosen:false},
 {name:"Stamen-watercolor",val:"http://b.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg",chosen:false},
-{name:"Stamen-Terrain",val:"http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg",chosen:false},
 {name:"ESRI-Sat",val:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg",chosen:false},
 {name:"MapBox-Sat",val:"https://a.tiles.mapbox.com/v3/tmcw.map-j5fsp01s/{z}/{x}/{y}.png",chosen:false}
 ];
