@@ -110,7 +110,45 @@ webmapping.controller("conditionStatus",function($scope){
     
 webmapping.controller("typeEvent",function($scope){ 
     $scope.typeEvent=typeEve;
+    $scope.inistialEvent=function(){
+         $scope.selectedAll = true;
+        
+    };
+    
+    $scope.checkAll=function(){
+    filterTotal.splice(2,1,"");
+    eventSelected=[];
+    if ($scope.selectedAll) {
+        angular.forEach($scope.typeEvent, function (item) {
+            item.selected = $scope.selectedAll;
+            eventSelected.push("'"+item.name+"'");      
+        });      
+    }else{
+       angular.forEach($scope.typeEvent, function (item) {
+       item.selected = $scope.selectedAll;
+        });      
+    }
+    if(typeof eventSelected !== 'undefined' && eventSelected.length!=0){
+                myEvents = "TYPE IN ("+eventSelected+")" ; 
+                filterTotal.splice(2,1,myEvents);
+  
+                isCondition=true;
+              
+           } else{
+               isCondition=false;
+               filterTotal.splice(2,1,"");
+             
 
+           }
+        
+ changeFilter(filterTotal);
+        
+    };
+        
+        
+        
+        
+   
     $scope.checkIfchecked=function(){
         filterTotal.splice(2,1,"");
         eventSelected=[];

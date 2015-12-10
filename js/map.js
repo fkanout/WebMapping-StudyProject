@@ -14,14 +14,10 @@ var urlTemplate = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=W
 'CQL_FILTER={{CQLFILTER}}&'+
 'outputFormat=text/javascript&' +
 'format_options=callback:loadFeatures';
- 
+var $ajaxloading = $('#ajaxLoader').hide();
+var $pageloading = $('#pageLoader').show();
 
-$(document).ready(function(){
-    $('#gpsText').keypress(function(e){
-      if(e.keyCode==13)
-      $('#gpsButton').click();
-    });
-});
+
 
 $( "#gpsButton" ).click(function() {  
     
@@ -151,7 +147,7 @@ var layers = [
     ];
 var view= new ol.View({
     center:  [385242.6225572883, 5406391.010610516],
-    zoom: 9   
+    zoom: 10   
     });
 var map = new ol.Map({
     layers: layers,
@@ -284,3 +280,23 @@ map.on('click', function(evt) {
     view.setCenter(coordinate);
     //End Animation    
 });
+
+$(document)
+  .ajaxStart(function () {
+    $ajaxloading.show();
+  })
+  .ajaxStop(function () {
+    $ajaxloading.hide();
+  });
+
+$(document).ready(function(){
+    $('#gpsText').keypress(function(e){
+      if(e.keyCode==13)
+      $('#gpsButton').click();
+    });
+     setTimeout(function() {
+        $pageloading.fadeOut('slow');
+    }, 1100); 
+});
+
+
