@@ -241,6 +241,12 @@ function validateGPS(){
 };
 
 //End GeoLocalisation
+// change mouse cursor when over marker
+map.on('pointermove', function(e) {
+  var pixel = map.getEventPixel(e.originalEvent);
+  var hit = map.hasFeatureAtPixel(pixel);
+  map.getTarget().style.cursor = hit ? 'pointer' : '';
+});
 
 map.on('click', function(evt) {
     var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
@@ -296,7 +302,7 @@ $(document).ready(function(){
     });
      setTimeout(function() {
         $pageloading.fadeOut('slow');
-    }, 1100); 
+    }, 1200); 
 });
 
 
