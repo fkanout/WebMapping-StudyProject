@@ -27,7 +27,7 @@
         <div class="mdl-layout mdl-js-layout">
             <header class="mdl-layout__header mdl-layout__header--scroll">
                  <div style="position:fixed;top:15px;left:1%" class="dropdown">
-                    <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                    <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="peysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
                         <span class="caret"></span>
                     </button>
                     <ul ng-controller="styleCtrl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -100,23 +100,33 @@
                     <input ng-change="submitDates()" id="eventDate" jquery-date-picker ng-model="event.startDate" /> 
                 </div>-->
 <!-- slide menu --> 
-                <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:162px;left:85%" class="input-group">
-   <span class="input-group-btn">
-            <input id="gpsText" style="width:90px;height:30px;" type="text" class="form-control" placeholder="La distance"  disabled>
-            <span class="input-group-btn">
-        <button style="font-size:12px;height:30px;" id="gpsButton" class="btn btn-default" type="button" disabled>Calculer</button>
-      </span>
-</div>
-                <div  style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:20px;left:75%;cursor:pointer">
+                
+
+                <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:162px;left:64%" class="input-group">
+                    
+                    <span class="input-group-btn">
+                        <button style="font-size:12px;height:30px;" id="gpsButton" class="btn btn-default" type="button" disabled>Dans un rayon de</button>
+                    </span>
+                
+                    <input id="gpsText"  min="1" max="200" type="number" style="width:60px;height:30px;" type="text" class="form-control" placeholder="KM"  disabled required>
+                  
+                </div>
+                
+                
+                <div  style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:20px;left:86%;cursor:pointer">
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="track">
                       <input id="track" type="checkbox"  class="mdl-switch__input" onClick="validateGPS()">
-                      <span class="mdl-switch__label"></span>&nbsp&nbsp&nbsp&nbsp Me localiser
+
+                        <span class="mdl-switch__label"></span>&nbsp&nbsp&nbsp&nbsp Me localiser&nbsp 
+                         
                     </label>
+                  
                     
                <!--    <div class='pin'></div>
                     <div class='pulse'></div>-->
                      <!-- Style de la carte-->              
                 </div>
+                  <div style="position:fixed;left:98%;top:33px;"><div class='pin'></div> <div class='pulse'></div></div> 
                 </header>
             <div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
                 <img id="imginfo" style="width:349px;height:200px" src="115058444.jpg"> </img>
