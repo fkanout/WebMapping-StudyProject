@@ -19,40 +19,29 @@ var $pageloading = $('#pageLoader').show();
 
 
 
+
+
 $( "#gpsButton" ).click(function() {  
-    
     var gpsDistance = ($('#gpsText').val()/100);
     if (!gpsDistance){
-        alert("il faut entrer une valeur correct dans le champ KM");
-        
+        alert("Il faut entrer une valeur correcte dans le champ KM");
     }else{
-
-    var gpsTwoParts=coordinatesGPS.toString().split(",");
-    console.log(gpsTwoParts[0]);
-
-    filterTotal.splice(5,1,"");
-    myDistance= " DWithin(the_geom,POINT("+gpsTwoParts[0]+" "+gpsTwoParts[1]+"),"+gpsDistance+",meters)";///BEFORE OR DURING 
-    filterTotal.splice(5, 1 ,myDistance);
-    changeFilter(filterTotal);
+        var gpsTwoParts=coordinatesGPS.toString().split(",");
+        filterTotal.splice(5,1,"");
+        myDistance= " DWithin(the_geom,POINT("+gpsTwoParts[0]+" "+gpsTwoParts[1]+"),"+gpsDistance+",meters)";///BEFORE OR DURING 
+        filterTotal.splice(5, 1 ,myDistance);
+        changeFilter(filterTotal);
     }
-   
 });
-
-
-
-
 
 function getDate(chosenDate){
         filterTotal.splice(4,1,"");
-        myDate= "DATE_D = '"+chosenDate+"'";///BEFORE OR DURING 
-        ///        lastEarthQuake DURING 1700-01-01T00:00:00/2011-01-01T00:00:00"
+        myDate= "DATE_D = '"+chosenDate+"'";
         filterTotal.splice(4, 1 ,myDate);
         changeFilter(filterTotal);
     };
     
-    
-    
-    var vectorSource = new ol.source.Vector({
+var vectorSource = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
                                             var url = urlTemplate.replace('{{CQLFILTER}}', cqlFilter);
                                             $.ajax({url: url, dataType: 'jsonp', jsonp: false});
@@ -60,27 +49,22 @@ function getDate(chosenDate){
                                         });
 
 function changeFilter(addons) {
-       for (var i = 0; i < addons.length; i++) {
-           if( addons[i] !== ''){
-               if(myFilter==""){
-                  myFilter=addons[i];
+    for (var i = 0; i < addons.length; i++) {
+    if( addons[i] !== ''){
+       if(myFilter==""){
+          myFilter=addons[i];
 
-               }else{
-                   myFilter+=" AND " + addons[i];
-               }
+       }else{
+           myFilter+=" AND " + addons[i];
             }
-        
+        }   
     }
-    
-    
     cqlFilter= myFilter;
-    console.log(myFilter);
-
     vectorSource.clear(true);
     myFilter="";
-}
+    console.log(cqlFilter);
+};
 
-    // the global function whose name is specified in the URL of JSONP WFS
 // GetFeature requests
 var loadFeatures = function(response) {
   vectorSource.addFeatures(geojsonFormat.readFeatures(response));
@@ -88,8 +72,7 @@ var loadFeatures = function(response) {
 
 
 
-// Start Cluster
-    
+// Start Cluster 
 var clusterSource = new ol.source.Cluster({
   distance: 20,
   source: vectorSource
@@ -109,7 +92,7 @@ var clusters = new ol.layer.Vector({
           offset: [0, 0],
           
           scale: 0.25,
-          src: './flags/facebook30.png'
+          src: './webmappingAssets/img/pin.png'
         }),
          
         
@@ -195,7 +178,7 @@ positionFeature.setStyle(new ol.style.Style({
           anchor: [0.5, 0.5],
           offset: [0, 0],   
           scale: 0.25,
-          src: './flags/location.png'
+          src: './webmappingAssets/img/location.png'
     })
   }));
   
@@ -203,7 +186,6 @@ geolocation.on('change:position', function() {
    coordinatesGPS = geolocation.getPosition();
    positionFeature.setGeometry(coordinatesGPS ?
     new ol.geom.Point(coordinatesGPS) : null);
-    console.log(coordinatesGPS);
 });
 var sourcefeaturesOverlay = new ol.source.Vector({
     features: [accuracyFeature, positionFeature]
@@ -220,7 +202,6 @@ var featuresOverlay = new ol.layer.Vector({
 function validateGPS(){
     var checkBoxGPS=document.getElementById('track');
     if(checkBoxGPS.checked){
-        console.log('checked');
         geolocation.setTracking(true);
         featuresOverlay.setSource(sourcefeaturesOverlay);
         document.getElementById("gpsButton").disabled = false;
@@ -230,7 +211,6 @@ function validateGPS(){
     }else{
     geolocation.setTracking(false);
     featuresOverlay.setSource(null);
-    console.log('nonchecked');
     document.getElementById("gpsButton").disabled = true;
     document.getElementById("gpsText").disabled = true;
     document.getElementById("gpsText").value="";   
@@ -254,21 +234,21 @@ map.on('click', function(evt) {
         return feature;
     });
     if (feature) {
+        imginfo.src="";
         var features = feature.get('features');
         var i;
         for (i = 0; i < features.length; ++i) {
-        nom.innerText=(features[i].get('NOM'));
-        place.innerText="Commune: "+(features[i].get('COMMUNE'));
-        imginfo.src="./garig/"+(features[i].get('IMAGE'))+".jpg";
-        adress.innerHTML="Adress: <br>"+(features[i].get('ADRESS'));
-        bref.innerHTML="Enbref: <br>"+(features[i].get('DESCRIPTIO'));
-        type.innerHTML="Type d'evenement: "+(features[i].get('TYPE'));
-        acces.innerHTML="Condition d'entrée: "+(features[i].get('ACCES'));
-        date_d.innerHTML="Date de debut . . . . . ."+(features[i].get('DATE_D'));
-        date_e.innerHTML="Date de fin . . . . . . . . . "+(features[i].get('DATE_F'));
-        typePeysage.innerHTML="Peysage: "+(features[i].get('PEYSAGE'));
-            
-    }
+            nom.innerText=(features[i].get('NOM'));
+            place.innerText="Commune: "+(features[i].get('COMMUNE'));
+            imginfo.src="./webmappingAssets/imgEvents/"+(features[i].get('IMAGE'))+".jpg";
+            adress.innerHTML="Adress: <br>"+(features[i].get('ADRESS'));
+            bref.innerHTML="Enbref: <br>"+(features[i].get('DESCRIPTIO'));
+            type.innerHTML="Type d'evenement: "+(features[i].get('TYPE'));
+            acces.innerHTML="Condition d'entrée: "+(features[i].get('ACCES'));
+            date_d.innerHTML="Date de debut . . . . . ."+(features[i].get('DATE_D'));
+            date_e.innerHTML="Date de fin . . . . . . . . . "+(features[i].get('DATE_F'));
+            typePeysage.innerHTML="Peysage: "+(features[i].get('PEYSAGE'));
+            }
         slidemenu.className="mdl-layout__drawer is-visible";
     }
     else{

@@ -1,4 +1,3 @@
-
 (function(){
 var webmapping=angular.module("webmapping", []);
 webmapping.controller("communesController", function communesController($scope) {
@@ -7,11 +6,7 @@ $scope.communes=lesCommunes;
 var communesSelected=[];
 var conditionEntree=[];
 var eventSelected=[];
-var paysageSelected=[];
-var isCommune=false;
-var isCondition=false;
-var nbrCondition=2;
-    
+var paysageSelected=[];    
 
 $scope.checkAll = function () {
     
@@ -30,18 +25,11 @@ $scope.checkAll = function () {
     if(typeof communesSelected !== 'undefined' && communesSelected.length!=0){ 
         myCommunes = "COMMUNE IN ("+communesSelected+")";
         filterTotal.splice(0,1,myCommunes);
-
-        isCommune=true;
-
    } else{
-       isCommune=false;
         filterTotal.splice(0,1,"");
    }
-   
 changeFilter(filterTotal);
 };
-    
-    
     
 $scope.inistialCommune=function(){
     $scope.selectedAll = true;
@@ -60,9 +48,7 @@ $scope.submit = function () {
       if(typeof communesSelected !== 'undefined' && communesSelected.length!=0){ 
         myCommunes = "COMMUNE IN ("+communesSelected+")"; 
         filterTotal.splice(0,1,myCommunes);
-        isCommune=true;
    } else{
-       isCommune=false;
        filterTotal.splice(0,1,"");
 
    }
@@ -88,21 +74,12 @@ webmapping.controller("conditionStatus",function($scope){
         });
            if(typeof conditionEntree !== 'undefined' && conditionEntree.length!=0){
                 myConditions = "ACCES IN ("+conditionEntree+")" ; 
-                filterTotal.splice(1,1,myConditions);
-  
-                isCondition=true;
-              
+                filterTotal.splice(1,1,myConditions);              
            } else{
-               isCondition=false;
                filterTotal.splice(1,1,"");
-             
-
            }
-        
  changeFilter(filterTotal);
-        
     };
-    
 });
 
     
@@ -111,10 +88,8 @@ webmapping.controller("conditionStatus",function($scope){
 webmapping.controller("typeEvent",function($scope){ 
     $scope.typeEvent=typeEve;
     $scope.inistialEvent=function(){
-         $scope.selectedAll = true;
-        
+         $scope.selectedAll = true;  
     };
-    
     $scope.checkAll=function(){
     filterTotal.splice(2,1,"");
     eventSelected=[];
@@ -131,24 +106,13 @@ webmapping.controller("typeEvent",function($scope){
     if(typeof eventSelected !== 'undefined' && eventSelected.length!=0){
                 myEvents = "TYPE IN ("+eventSelected+")" ; 
                 filterTotal.splice(2,1,myEvents);
-  
-                isCondition=true;
-              
+           
            } else{
-               isCondition=false;
+              
                filterTotal.splice(2,1,"");
-             
-
            }
-        
  changeFilter(filterTotal);
-        
     };
-        
-        
-        
-        
-   
     $scope.checkIfchecked=function(){
         filterTotal.splice(2,1,"");
         eventSelected=[];
@@ -159,21 +123,13 @@ webmapping.controller("typeEvent",function($scope){
         });
            if(typeof eventSelected !== 'undefined' && eventSelected.length!=0){
                 myEvents = "TYPE IN ("+eventSelected+")" ; 
-                filterTotal.splice(2,1,myEvents);
-  
-                isCondition=true;
-              
+                filterTotal.splice(2,1,myEvents);  
            } else{
-               isCondition=false;
-               filterTotal.splice(2,1,"");
              
-
+               filterTotal.splice(2,1,"");
            }
-        
- changeFilter(filterTotal);
-        
-    };
-    
+ changeFilter(filterTotal);  
+    }; 
 });
     
 //-----------------------------------------------------------------------
@@ -194,15 +150,9 @@ webmapping.controller("typePeysage",function($scope){
                 filterTotal.splice(3,1,myPeysage);
            } else{
                filterTotal.splice(3,1,"");
-             
-
            }
-        
- changeFilter(filterTotal);
-        
-    };
-    
-    
+ changeFilter(filterTotal);  
+    }; 
 });
 
 //-----------------------------------------------------------------------
@@ -216,97 +166,8 @@ webmapping.controller('styleCtrl',function($scope){
     };
 });
 
+
     
-//-----------------------------------------------------------------------
-    
-webmapping.controller('mainController', function($scope, $filter) {
-    $scope.displayResultList = false;
-
-    //Array of government holidays
-    $scope.federalHolidayDates = [];
-    $scope.federalHolidayDates.push('10/01/2015');
-    $scope.federalHolidayDates.push('10/12/2015') ;
-    $scope.federalHolidayDates.push('11/26/2015') ;                 
-    $scope.invalidCalendarDates = $scope.federalHolidayDates;
-
-    //Array of events
-    $scope.eventsArray=[] ;
-    $scope.eventsArray.push({id: 1, startDate: moment('10/10/2015').format('DD/MM/YYYY')});
-    
-    $scope.submitDates = function(){
-        $scope.displayResultsArray = $scope.eventsArray;
-        $scope.displayResultList = true;      
-    };
-
-  });
-    
-    
-webmapping.directive('jqueryDatePicker', ['$compile', '$timeout', '$parse', function($compile, $timeout, $parse) {
-    var tpl = "<div class='input-group'> <input type='text' class='form-control' ng-model='myDate' placeholder='dd/mm/yyyy' required='true' /> <div class='input-group-addon' ng-click='showCalendar()'><i class='fa fa-calendar'></i></div> </div>";
-    return {
-        restrict: 'AE',
-        require: 'ngModel',
-        replace: true,
-        template: tpl,
-        scope: {
-            invalidDates: "=disableDates"
-        },
-        link : function(scope,element,attrs,ngModelCtrl){
-
-          $(element).daterangepickercompat({
-              singleDatePicker: true,
-              "isInvalidDate": function (val) {
-                  var findFedDate = $.inArray(moment(val).format("DD/MM/YYYY"), scope.invalidDates);
-                  if (findFedDate != -1) {
-                      return true;
-
-                  } else {
-                      getDate("");
-                      return false;
-
-                  }
-                  
-              }
-          });
-
-          //Updating incoming model value and assign to viewValue
-          ngModelCtrl.$formatters.push(function(modelValue) {
-              var myDate = modelValue;
-
-              return myDate;
-          });
-
-          //Incoming viewValue and assign to modelValue
-          ngModelCtrl.$parsers.push(function(viewValue) {
-              scope.myDate = viewValue;
-                            
-
-             scope.myDate = scope.myDate.format("DD/MM/YYYY");
-             getDate(scope.myDate);/// here where i can get the chosen date
-
-              return scope.myDate;
-          });
-
-
-          $(element).on('apply.daterangepickercompat', function(ev, picker) {
-              var pickedDate = moment(picker.startDate).utcOffset(240); //Corrects UTC offset issue
-              ngModelCtrl.$setViewValue(pickedDate);
-              ngModelCtrl.$render = function() {
-                scope.myDate = scope.myDate;
-              };
-          });
-
-          //Return rendered to templates model
-          ngModelCtrl.$render = function() {
-            scope.myDate = ngModelCtrl.$viewValue;
-          };
-
-        }
-    };
-
-}]);
-
-
 var carteStyle=[
 {name:"OSM-MapInk",val:"http://tile.openstreetmap.org/{z}/{x}/{y}.png",chosen:true},
 {name:"OSM-France",val:"http://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",chosen:true},

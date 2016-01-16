@@ -1,303 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="webmapping">
+
 <head>
-<title>Tiled WMS example</title>
+   <link rel="icon" href="favicon.ico">
+   <link rel="SHORTCUT ICON" herf="favicon.ico">
+    <meta charset="utf-8">
+    <title>Héraut événement 2016</title>
+    <link rel="stylesheet" href="webmappingAssets/css/material.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
-
-<script src="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css"></script>
-<link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
-<script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
-    
-
-<link rel="stylesheet" href="./material.css">
-<script src="./material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    
-<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
-<script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
-
-    
-    
-    
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.8.2/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="webmappingAssets/css/pinmap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Angular Material CSS  -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    
-<style>
-html{ 
-    height:100%}
-body{font-family: 'Raleway', sans-serif;
-    height:100%}
-#map{
-  height:100%;
-  width:100%;
-     
-}
-    .ol-zoom  {
-    left: 97%;
-        top: 85 %;
-        
-    }
-</style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <!-- Main style my page index.html-->
+    <link rel="stylesheet" type="text/css" href="webmappingAssets/css/style.css" />
+    <!-- Loader-->
+    <link rel="stylesheet" type="text/css" href="webmappingAssets/css/preload.css" />
+</head>
 
 <body>
-    
-  <!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
-<div class="mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--scroll">
-    <div class="mdl-layout__header-row">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        
-    <input class="mdl-textfield__input" type="text" id="sample3" />
-    <label style="display:inline-block; " class="mdl-textfield__label" id="sample3">Rechercher dans Montepellier Eve
-        </label> 
-        
-   
-  </div>
-          <img style="display:inline-block; " src="search.png">
-    </div>
-  </header>
-  <div id="slidemenu" class="mdl-layout__drawer">
-  <!--  <span class="mdl-layout-title">le nom du evenement</span>-->
-      <div class="span4 offset4">
-          <div id="info" class="alert alert-success">
-          
-          </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div style="position:fixed;top:15px;left:1%" class="dropdown">
+                <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="paysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <span style="color:rgb(0,0,0);font-size:15px" class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul ng-controller="styleCtrl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="mystyle in styleList" style="margin: 0px 10px; width:180px;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-click="styleChecked(mystyle.val)" ng-model="$parent.selected" ng-value="mystyle.name" id="radioStyle{{$index}}" class="radio-custom" name="radio-group" type="radio">
+                        <label for="radioStyle{{$index}}" class="radio-custom-label">{{mystyle.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- search by paysage -->
+            <div style="position:fixed;top:15px;left:20%" class="dropdown">
+                <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="paysage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Paysage
+                    <span class="caret"></span>
+                </button>
+                <ul ng-controller="typePeysage" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="paysage in peysags" style="margin: 0px 10px; width:200px;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="paysage.selected" id="{{paysage.name}}" class="checkbox-custom" type="checkbox" checked>
+                        <label style="color:rgb(0,0,0)" for="{{paysage.name}}" class="checkbox-custom-label">{{paysage.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- search by evenement type -->
+            <div style="position:fixed;top:15px;left:28%" class="dropdown">
+                <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="type_even" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Type d'événement
+                    <span class="caret"></span>
+                </button>
+                <ul ng-controller="typeEvent" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li style="margin: 0px 10px; width: auto;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-init="inistialEvent()" id="selectEvent" ng-click="checkAll()" ng-model="selectedAll" type="checkbox" class="checkbox-custom">
+                        <label for="selectEvent" class="checkbox-custom-label">Sélectionner tout</label>
+                    </li>
+                    <li style="text-align:center;margin: 0px 10px; width: auto;font-size:14px;color:rgb(0,0,0)">
+                        <span style="font-size:15px;color:rgba(0,0,0,0.5);position:center;" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                    </li>
+                    <li ng-repeat="event in typeEvent" style="margin: 0px 10px; width:200px;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="event.selected" id="{{event.name}}" class="checkbox-custom" type="checkbox" checked>
+                        <label style="color:rgb(0,0,0)" for="{{event.name}}" class="checkbox-custom-label">{{event.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- search by condition d'entree -->
+            <div style="position:fixed;top:15px;left:40%" class="dropdown">
+                <button style="font-size:12px" class="btn btn-default dropdown-toggle" type="button" id="DM_condition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Condition d'entrée
+                    <span class="caret"></span>
+                </button>
+                <ul ng-controller="conditionStatus" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="val in condValue" style="margin: 0px 10px; width:auto;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-init="checkIfchecked()" ng-click="checkIfchecked()" ng-model="val.selected" id="{{val.name}}" class="checkbox-custom" type="checkbox" checked>
+                        <label style="color:rgb(0,0,0)" for="{{val.name}}" class="checkbox-custom-label">{{val.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- search by List de communes -->
+            <div style="position:fixed;top:15px;left:52%" class="dropdown">
+                <button style="font-size:12px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Liste des communes
+                    <span class="caret"></span>
+                </button>
+                <ul ng-controller="communesController" style="overflow-y: scroll;height:1000%" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li style="margin: 0px 10px; width: auto;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-init="inistialCommune()" id="selectAll" ng-click="checkAll()" ng-model="selectedAll" type="checkbox" class="checkbox-custom">
+                        <label for="selectAll" class="checkbox-custom-label">Sélectionner tout</label>
+                    </li>
+                    <li style="margin: 0px 10px; text-align:center; width: 200px;font-size:12px;color:rgb(0,0,0)">
+                        <input ng-model="query" type="search" class="search-field" placeholder="Recherche" value="" name="s" title="Search efter:">
+                        <br>
+                        <span style="font-size:15px;color:rgba(0,0,0,0.5);position:center;" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                    </li>
+                    <li ng-repeat="commune in communes | filter:query" style="margin: 0px 10px; width: 215px;font-size:14px;color:rgb(0,0,0)">
+                        <input ng-click="submit()" id="{{commune.name}}" ng-model="commune.Selected" type="checkbox" class="checkbox-custom">
+                        <label class="checkbox-custom-label" for="{{commune.name}}">{{commune.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- slide menu -->
+            <div style="margin: 15px 0px;text-align:center;position:fixed;height:30px;width:162px;left:65%" class="input-group">
+                <span class="input-group-btn">
+                        <button style="font-size:12px;height:30px;" id="gpsButton" class="btn btn-default" type="button" disabled>Dans un rayon de</button>
+                    </span>
+                <input id="gpsText" min="1" max="200" type="number" style="width:60px;height:30px;" type="text" class="form-control" placeholder="KM" disabled required>
+
+            </div>
+            <div style="font-size:12px;cursor:pointer;display:inline-block;position:fixed;top:20px;left:86%;cursor:pointer">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="track">
+                    <input id="track" type="checkbox" class="mdl-switch__input" onClick="validateGPS()">
+                    <span class="mdl-switch__label"></span>&nbsp&nbsp&nbsp&nbsp Me localiser&nbsp
+                </label>
+            </div>
+            <div style="position:fixed;left:98%;top:33px;">
+                <div class='pin'></div>
+                <div class='pulse'></div>
+            </div>
+        </header>
+        <div style="text-align: center;filter: blur(100px); background: rgba(0, 0, 0,0.8);" id="slidemenu" class="mdl-layout__drawer">
+            <img id="imginfo" style="width:349px;height:200px" src=""> </img>
+            <span id="span_info1" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h4 class="eventsTitel" id="nom"></h4>
+
+            <span id="span_info2" sclass="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5 class="eventsInfo" id="Commune"></h5>
+            <h5 class="eventsInfo" id="type"></h5>
+            <h5 class="eventsInfo" id="typePeysage"></h5>
+
+            <span id="span_info3" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5 class="eventsInfo" id="date_d"></h5>
+            <h5 class="eventsInfo" id="date_e"></h5>
+
+            <span id="span_info4" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5 class="eventsInfo" id="acces"></h5>
+
+            <span id="span_info5" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5 class="eventsInfo" id="adress"></h5>
+
+            <span id="span_info6" class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+            <h5 class="eventsInfo" id="bref"></h5>
         </div>
-  
-  </div>
-    <div class="map" id="map"><div id="popup"></div></div>
-  
-</div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    	
+        <!--Page loader-->
+        <div id="pageLoader" style="align-text:center; align-content :center;z-index: 11;position:absolute;background:rgb(255,255,255); width:100%;height: 100%;">
+            <div style="left:45%;top:40%;color: #4661f4" class="la-ball-grid-pulse la-3x">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!--Ajax Loader-->
+        <div id="ajaxLoader" style="align-content :center;z-index: 10;position:absolute;background:rgba(0,0,0,0.4); width:100%;height: 100%;">
+            <div style="left:47%;top:47%;color: #ffffff" class="la-ball-clip-rotate-multiple la-2x">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- Openlayers Map  -->
+        <div style="z-index: 0;" class="map" id="map"></div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="webmappingAssets/js/app.js"></script>
+    <script src="webmappingAssets/js/material.min.js"></script>
 
-    
-    
-<script>
-    
-    //Book example 
-  /*  
-var fill = new ol.style.Fill({
-color: 'rgba(0,0,0,0.2)'
-});
-var stroke = new ol.style.Stroke({
-color: 'rgba(0,0,0,0.4)'
-});
-var circle = new ol.style.Circle({
-radius: 6,
-fill: fill,
-stroke: stroke
-    });
-    
-var vectorStyle = new ol.style.Style({
-fill: fill,
-stroke: stroke,
-image: circle
-});
-    
-var vectorLoader = function(extent, resolution, projection) {
-var url = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
-        'version=1.1.0&request=GetFeature&typename=montpellier:VilleMTP_MTP_ArretsL1&' +
-        'outputFormat=text/javascript&format_options=callback:loadFeatures' +
-        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
-$.ajax({
-    url: url,
-    dataType: 'jsonp'
-    });
-};
-var loadFeatures = function(response) {
-var features = vectorSource.readFeatures(response);
-vectorSource.addFeatures(features);
-    };
-
- 
-var vectorSource = new ol.source.ServerVector({
-format: new ol.format.GeoJSON(),
-loader: vectorLoader,
-strategy: ol.loadingstrategy.tile(new ol.tilegrid.createXYZ({
-maxZoom: 19
-        })),
-projection: 'EPSG:3857',
-});
-    
-var serverVector = new ol.layer.vector({
-source: vectorSource,
-style: vectorStyle,
-    visible:true
-});
-    
-   */ 
-     
-    var fill = new ol.style.Fill({
-color: 'rgba(0,0,0,0.2)'
-});
-var stroke = new ol.style.Stroke({
-color: 'rgba(0,0,0,0.4)'
-});
-var circle = new ol.style.Circle({
-radius: 6,
-fill: fill,
-stroke: stroke
-    });
-    
-var vectorStyle = new ol.style.Style({
-    cursor: "pointer",
-fill: fill,
-stroke: stroke,
-image: circle
-});
-    
-    
- var geojsonFormat = new ol.format.GeoJSON();
-
-var vectorSource = new ol.source.Vector({
-  loader: function(extent, resolution, projection) {
-    var url = 'http://myapp-faisalkanout.rhcloud.com/geoserver/wfs?service=WFS&' +
-        'version=1.1.0&request=GetFeature&typename=montpellier:EveCorrect&' +
-        'outputFormat=text/javascript&format_options=callback:loadFeatures' +
-        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
-    // use jsonp: false to prevent jQuery from adding the "callback"
-    // parameter to the URL
-    $.ajax({url: url, dataType: 'jsonp', jsonp: false});
-  },
-  strategy: ol.loadingstrategy.tile(new ol.tilegrid.createXYZ({
-    maxZoom: 16
-  }))
-});
-
-    // the global function whose name is specified in the URL of JSONP WFS
-// GetFeature requests
-var loadFeatures = function(response) {
-  vectorSource.addFeatures(geojsonFormat.readFeatures(response));
-};
-
-var vector = new ol.layer.Vector({
-  source: vectorSource,
-  style: vectorStyle
-});
-
-    
-/*
-    
-    
-   
-var sourceVector = new ol.source.Vector({
-	loader: function(extent) {
-		$.ajax('http://myapp-faisalkanout.rhcloud.com/geoserver/wfs',{
-			type: 'GET',
-			data: {
-				service: 'WFS',
-				version: '1.1.0',
-				request: 'GetFeature',
-				typename: 'montpellier:EveCorrect',
-				srsname: 'EPSG:3857',
-                
-				bbox: extent.join(',') + ',EPSG:3857'
-				},
-			}).done(loadFeatures);
-		},
-	strategy: ol.loadingstrategy.tile(new ol.tilegrid.createXYZ({
-    maxZoom: 19
-  }))
-
-});
-
- 
-
-    
- window.loadFeatures = function(response) {
-    formatWFS = new ol.format.WFS(),
-    sourceVector.addFeatures(formatWFS.readFeatures(response));
-    };
-
-var layerVector = new ol.layer.Vector({
-    source: sourceVector,
-    style: new ol.style.Style({
-        cursor: "pointer",
-        stroke: new ol.style.Stroke({
-            color: 'rgba(0, 0, 255, 1.0)',
-            width: 100
-            })
-        })
-    });
-
-    
-       
-*/
-var slidemenu = document.getElementById('slidemenu');
-    
-var wmsSource = new ol.source.TileWMS({
-  url: 'http://myapp-faisalkanout.rhcloud.com/geoserver/wms',
-  params: {'LAYERS':'montpellier:EveCorrect'},
-  serverType: 'geoserver',
- transparent: true,
-  isBaseLayer: false, opacity: 1, singleTile: true, visibility: true
-});
-var wmsLayer = new ol.layer.Tile({
-  source: wmsSource
-});    
-    
-    
-var layers = [
-    new ol.layer.Tile({
-           source: new ol.source.MapQuest({layer: 'osm'})
-        }),
- vector
-];
-
-var view= new ol.View({
-    center:  [431735.4450117468, 5405225.345929167],
-    zoom: 13    
-    });
-var map = new ol.Map({
-    layers: layers,
-    
-    target: 'map',
-    view: view,
-    loadTilesWhileAnimating:true,
-    loadTilesWhileInteracting:true
-    
-    });
-    zoomslider = new ol.control.ZoomSlider();
-  map.addControl(zoomslider);
-
-    
-map.on('singleclick', function(evt) {
-    
-  document.getElementById('info').innerHTML = '';
-   
-  var viewResolution = /** @type {number} */ (view.getResolution());
-  var url = wmsSource.getGetFeatureInfoUrl(
-      evt.coordinate, viewResolution, 'EPSG:3857',
-      {'INFO_FORMAT': 'text/html'});
-  if (url) {
-    document.getElementById('info').innerHTML =
-        '<iframe seamless src="' + url + '"></iframe>';
-        slidemenu.className="mdl-layout__drawer is-visible";
-
-  }
-});
-
-    
-
-
-    
-</script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $('.dropdown-menu').on('click', function (event) {
+            //pour ne ferme pas le drop menu quand on clique de dans 
+            event.stopPropagation();
+        });
+    </script>
+    <script src="http://openlayers.org/en/v3.10.1/build/ol.js"></script>
+    <script type="text/javascript" src="webmappingAssets/js/main.js">
+    </script>
 </body>
+
 </html>
